@@ -1,0 +1,7 @@
+(venv) emobilis@emobilis-HP-Z200-SFF-Workstation:~/PycharmProjects/shoe-game$ ls
+app.py  static  templates  venv
+(venv) emobilis@emobilis-HP-Z200-SFF-Workstation:~/PycharmProjects/shoe-game$ cd templates
+(venv) emobilis@emobilis-HP-Z200-SFF-Workstation:~/PycharmProjects/shoe-game/templates$ touch base.html about.html signup.html login.html index.html post.html contact.html update.html
+(venv) emobilis@emobilis-HP-Z200-SFF-Workstation:~/PycharmProjects/shoe-game/templates$ touch 404.html 500.html
+(venv) emobilis@emobilis-HP-Z200-SFF-Workstation:~/PycharmProjects/shoe-game/templates$
+
