@@ -4,3 +4,4 @@ ToolPage:       https://en.toolpage.org/
 FontAwesome:    https://fontawesome.com/
 GetBootstrap:   https://getbootstrap.com/
 Sudo Windows:   https://helpdeskgeek.com/free-tools-review/5-windows-alternatives-linux-sudo-command/
+Assignment:     https://github.com/AntonyIS/Safari-website/tree/master/Tours_app/flaskblog2
