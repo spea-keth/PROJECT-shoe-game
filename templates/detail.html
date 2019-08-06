@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block title %}{{ title }}{% endblock title %}
+
+{% block body %}
+    <h1>{{ shoe.name }}</h1>
+    <hr>
+    <h3>{{ shoe.image }}</h3>
+    <h3>{{ shoe.description }}</h3>
+    <h3>{{ shoe.size }}</h3>
+    <h3>{{ shoe.price }}</h3>
+{% endblock body %}

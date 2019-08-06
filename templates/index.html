@@ -2,4 +2,25 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block body %}
+    <div class="container">
+        <div class="row">
+            {% if shoes %}
+                {% for shoe in shoes %}
+                    <div class="col-md-4">
+                        <a href="{{ url_for('detail', shoe_id=shoe.id) }}">
+                            <div class="thumbnail">
+                                <img src="{{ shoe.image }}" alt="">
+                                <div class="caption">
+                            <h3>{{ shoe.name }}</h3>
+                            <p>{{ shoe.size }}</p>
+                            <p>Ksh. {{ shoe.price }}</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
 {% endblock body %}

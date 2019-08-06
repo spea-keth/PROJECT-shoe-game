@@ -1,0 +1,6 @@
+Linux Mint:     https://www.linuxmint.com/start/tara/
+'touch':        https://vitux.com/8-common-uses-of-the-linux-touch-command/
+ToolPage:       https://en.toolpage.org/
+FontAwesome:    https://fontawesome.com/
+GetBootstrap:   https://getbootstrap.com/
+Sudo Windows:   https://helpdeskgeek.com/free-tools-review/5-windows-alternatives-linux-sudo-command/
