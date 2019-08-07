@@ -2,4 +2,35 @@
 {% block title %}{{ title }}{% endblock title %}
 
 {% block body %}
+    <div class="container">
+    <hr><br>
+    <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <form action="{{ url_for('post') }}" method="post" enctype="multipart/form-data">
+                <hr>
+                {{ form.name.label( class="form-control-label") }}
+                {{ form.name }}
+                <hr>
+                {{ form.description.label( class="form-control-label") }}
+                {{ form.description }}
+                <hr>
+                {{ form.price.label( class="form-control-label") }}
+                {{ form.price }}
+                <hr>
+                {{ form.size.label( class="form-control-label") }}
+                <br>
+                {{ form.size }}
+                <hr>
+                {{ form.image.label( class="form-control-label") }}
+                {{ form.image }}
+                <hr>
+                {{ form.btn_submit( class="form-control-label") }}
+                <hr>
+                <hr>
+            </form>
+        </div>
+        <div class="col-4"></div>
+    </div>
+    </div>
 {% endblock body %}

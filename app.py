@@ -1,7 +1,7 @@
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy #ORM
 from flask_wtf import FlaskForm
-from wtforms import StringField, TextField, IntegerField, SubmitField, FileField
+from wtforms import StringField, TextAreaField, IntegerField, SubmitField, FileField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
@@ -10,7 +10,8 @@ app = Flask(__name__)
 #sync db to app
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///Shoesdb.db"
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
-
+app.config['SECRET_KEY'] = 'password'
+    #dictionary #key        #value
 
 #reference db
 db = SQLAlchemy(app)
@@ -28,10 +29,11 @@ class Shoe(db.Model):
 class ShoeForm(FlaskForm):
     #object             #label                  #list with 1 item
     name = StringField("Shoe Name", validators=[DataRequired()])
-    description = TextField("Description", validators=[DataRequired()])
+    description = TextAreaField("Description", validators=[DataRequired()])
     image = FileField("Add Picture", validators=[DataRequired()])
     price = IntegerField("Enter Price", validators=[DataRequired()])
-    cost = IntegerField("Enter Cost", validators=[DataRequired()])
+    size = IntegerField("Enter Size", validators=[DataRequired()])
+    btn_submit = SubmitField("Save")
 
 #decorator - determines what func below it does
 @app.route('/home')
@@ -39,8 +41,8 @@ class ShoeForm(FlaskForm):
 @app.route('/') #url for endpoint (landing page)
 def index(): #called on route '/'
     query = Shoe.query.all()
-    title = "Shoe-Game | Home "
-    return render_template('index.html', shoes=query, title=title)
+    app_title = "Shoe-Game | Home "
+    return render_template('index.html', shoes=query, title=app_title)
 
 @app.route('/about')
 def about():
@@ -62,7 +64,7 @@ def detail(shoe_id):
         return render_template('detail.html', shoe=shoe)
     except:
         msg = "No shoe found"
-        return redirect('index')
+        return redirect(url_for('index'))
                         #called index()
 
 
@@ -71,9 +73,22 @@ def detail(shoe_id):
 def login():
     return render_template('login.html')
 
-@app.route('/post') #create
+@app.route('/post',methods=['GET','POST']) #create
 def post():
-    return render_template('post.html')
+    form = ShoeForm()
+    if form.validate_on_submit():
+        form_name = form.name.data
+        form_description = form.description.data
+        form_image = form.image.data
+        form_price = form.price.data
+        form_size = form.size.data
+
+        shoe = Shoe(name=form_name, description=form_description, image=form_image, price=form_price, size=form_size)
+        db.session.add(shoe) #save data to db
+        db.session.commit()
+
+        return redirect(url_for('index'))
+    return render_template('post.html', form=form)
 
 @app.route('/signup')
 def signup():
